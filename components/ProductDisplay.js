@@ -39,6 +39,9 @@ app.component('product-display', {
           v-on:click="addToCart">
           Add to Cart
         </button>
+
+        <button class="button" @click="removeToCart">
+        Remove to card</button>
       </div>
     </div>
   </div>`,
@@ -59,7 +62,7 @@ app.component('product-display', {
                     id: 2235,
                     color: 'blue',
                     image: './assets/images/socks_blue.jpg',
-                    quantity: 0,
+                    quantity: 12,
                 },
             ],
         };
@@ -70,6 +73,12 @@ app.component('product-display', {
         },
         updateVariant(index) {
             this.selectedVariant = index;
+        },
+        removeToCart() {
+            this.$emit(
+                'remove-to-cart',
+                this.variants[this.selectedVariant].id
+            );
         },
     },
     computed: {
